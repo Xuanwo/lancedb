@@ -2055,7 +2055,9 @@ def test_remote_function_errors_lists_the_rows_a_refresh_skipped():
                 "table_version": 11,
                 "error_type": "ValueError",
                 "error_message": "bad input 'x'",
-                "traceback": "Traceback (most recent call last):\nValueError: bad input 'x'",
+                "traceback": (
+                    "Traceback (most recent call last):\nValueError: bad input 'x'"
+                ),
                 "created_at_millis": 1700000000000,
             }
         ],
@@ -5132,7 +5134,10 @@ def test_remote_connection_jobs_surface():
                         failure=dict(
                             phase="execute",
                             message="worker died",
-                            traceback="Traceback (most recent call last):\nRuntimeError: worker died",
+                            traceback=(
+                                "Traceback (most recent call last):\n"
+                                "RuntimeError: worker died"
+                            ),
                             retryable=True,
                             sql_job_id="sql-job-1",
                         ),
