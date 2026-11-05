@@ -11034,7 +11034,7 @@ mod tests {
                         "row_id": 42, "row_address": 12884901897,
                         "column": "embedding", "function": "embed", "function_version": "2",
                         "table_version": 11, "error_type": "ValueError",
-                        "error_message": "bad input 'x'", "traceback": "Traceback (most recent call last):\\nValueError: bad input 'x'",
+                        "error_message": "bad input 'x'", "traceback": "Traceback (most recent call last):\nValueError: bad input 'x'",
                         "created_at_millis": 1700000000000}],
                         "fragments": [{"job_id": "j-7", "fragment_id": 4, "rows_skipped": 500,
                         "rows_recorded": 100}],
