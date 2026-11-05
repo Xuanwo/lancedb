@@ -54,11 +54,13 @@ run_step() {
   printf 'ENT3448_STEP_PASS %s\n' "$name"
 }
 
-run_step rust_fmt mbx fmt --all -- --check
-run_step python_fmt uvx ruff format --check python/python/tests/test_remote_db.py python/python/lancedb/_lancedb.pyi
-run_step python_lint uvx ruff check python/python/tests/test_remote_db.py python/python/lancedb/_lancedb.pyi
-run_step job_failure_legacy mbx test --quiet --features remote -p lancedb test_job_wait_surfaces_failure
-run_step job_failure_traceback mbx test --quiet --features remote -p lancedb test_job_wait_reports_the_server_failure_reason
+if [[ "${ENT3448_FOLLOWUP:-0}" != 1 ]]; then
+  run_step rust_fmt mbx fmt --all -- --check
+  run_step python_fmt uvx ruff format --check python/python/tests/test_remote_db.py python/python/lancedb/_lancedb.pyi
+  run_step python_lint uvx ruff check python/python/tests/test_remote_db.py python/python/lancedb/_lancedb.pyi
+  run_step job_failure_legacy mbx test --quiet --features remote -p lancedb test_job_wait_surfaces_failure
+  run_step job_failure_traceback mbx test --quiet --features remote -p lancedb test_job_wait_reports_the_server_failure_reason
+fi
 run_step function_error_traceback mbx test --quiet --features remote -p lancedb test_function_errors_lists_the_rows_a_refresh_skipped
 run_step binding_check mbx check --quiet -p lancedb-python -p lancedb-nodejs
 
